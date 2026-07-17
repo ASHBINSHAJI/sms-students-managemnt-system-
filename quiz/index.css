@@ -1,0 +1,490 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+body {
+    min-height: 100vh;
+overflow-x: hidden;
+overflow-y: hidden;
+    background:
+        radial-gradient(circle at top right,
+            rgba(59,130,246,.08) 0,
+            rgba(59,130,246,.08) 120px,
+            transparent 121px),
+
+        radial-gradient(circle at bottom left,
+            rgba(59,130,246,.08) 0,
+            rgba(59,130,246,.08) 120px,
+            transparent 121px),
+
+        #f8fbff;
+          background: linear-gradient(-45deg,white,rgb(136, 136, 224),cyan);
+          background-size: 400% 400%;
+          animation: gradientShift 15s ease infinite;
+    background-repeat: no-repeat;
+}
+@keyframes gradientShift{
+    0%{
+     background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
+
+.container{  
+      display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+.nav{
+    position: relative;
+    z-index: 1000;
+     height: 55px;
+    padding: 0 20px;
+    box-shadow: none;
+    background: rgb(45, 143, 230);
+    border-radius: 50px;
+    
+    margin: 20px auto 0;
+    width: 90%;
+   
+    box-sizing: border-box;
+}
+.logo-row{
+    display:flex;
+    align-items:center;
+    justify-content: left;
+    gap :15px;
+}
+.logo-row i{
+    margin-bottom: 16px;
+    font-size:22px;
+    margin-top: 20px;
+}
+.students-heading{
+    margin-top: 18px;
+    font-weight: 500;
+    font-size: 17px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.dropbtn{
+    
+ display: flex;
+ align-items: center;
+ gap: 3px;
+ border-color: #2b253d;
+ background: transparent;
+ color: #ffffff;
+ font-size: 22px;
+ font-weight: 500;
+ padding: 10px 14px; 
+ margin-left: 3vh;
+ border-radius: 8px;
+ cursor: pointer;
+ transition: background 0.2s ease;
+}
+.dropbtn:hover{
+    background: rgba(255, 255, 255, 0.1);
+    border-color: black;
+    transform: translate(-1px);
+}
+.dropbtn:active{
+    transform: translateY(0px) scale(0.97);
+    background: rgba(255, 255, 255, 0.25);
+}
+.dropbtn:focus-visible{
+    outline: 1px solid #ffffff;
+    outline-offset: 2px;
+}
+.user-icon{
+display: flex;
+align-items: center;
+font-size: 16px;
+}
+.arrow-down{
+    font-size: 1fr;
+    margin-left: 2px;
+}
+.dropdown{
+    position: relative;
+}
+
+.dropdown-menu{
+    position: absolute;
+     /* top: 100%;  */
+    right: 0;
+    font-size: 10px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 2px rgba(0, 0, 0, 0.15);
+    min-width: 130px;
+ margin: 8px 29px;
+    flex-direction: column;
+    gap: 2px;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.25s ease;
+} 
+.dropdown-menu.show{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.dropdown-menu a:hover{
+background: #f0f4ff;
+}
+  .dropdown-menu a{
+    display: block;
+    padding: 6px 10px;
+   text-decoration: none;
+   color: black; 
+
+}  
+@media (max-width:768px){
+    .nav{
+        padding: 5px  15px;
+    }
+    .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo-row{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+    }
+    .students-heading{
+        font-size: 10px;
+    }
+    .bi-backpack4-fill{
+        font-size: 14px;
+    }
+    .dropbtn{
+        padding: 6px 8px;
+        font-size: 19px;
+    }
+    #dropdownmenu{
+        padding: 2px 4px;
+        right: 0;
+        min-width: 100px;
+    }
+} 
+
+ 
+
+.dots{
+    z-index: -1;
+}
+.dots{
+    position:absolute;
+    width:120px;
+    height:120px;
+ 
+    background-image: radial-gradient(#000000 2px, transparent 2px);
+    background-size:24px 24px;
+    opacity:.3;
+} 
+
+.dots-left{
+    top:120px;
+    left:60px;
+}
+
+.dots-right{
+    bottom:100px;
+    right:70px;
+}
+body::before{
+    position:absolute;
+    
+}
+body::before,
+body::after{
+    pointer-events:none;
+    z-index:-1;
+}
+@media(max-width:768px){
+
+
+    .dots{
+        width:80px;
+        height:80px;
+        background-size:18px 18px;
+    }
+
+    .dots-left{
+        top:90px;
+        left:20px;
+    }
+
+    .dots-right{
+        right:20px;
+        bottom:70px;
+    }
+}
+ .hero{
+    /* border-radius:10px; */
+    position: relative;
+    min-height: calc(100vh -70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: -30px ;
+  
+}
+.card{  
+    background:rgb(186, 235, 247) ;
+    display: flex;
+    border-radius: 10px;
+    border-color: #000000;
+    width: 40%;
+    margin-bottom: 100px;
+    min-width: 300px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; 
+     box-shadow: 0 15px 35px rgba(8, 8, 8, 0.445);
+} 
+.bi-people{
+    padding: 20px 10px;
+    margin-right: 22px;
+    margin-left: 8dvh;
+    width: 40%;
+    font-size: 60px;
+}
+.divider-container{
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.line-with-dot{
+    width: 6px;
+    height: 6px;
+    background: rgb(0, 0, 0);
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.line-with-dot::before,
+/* The right line */
+.line-with-dot::after {
+  content: "";
+  position: absolute;
+  width: 100px; /* Adjust this to make the lines longer or shorter */
+  height: 2px;  /* Thickness of the line */
+  background: linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.6)); /* Subtle gradient fade */
+}
+
+/* Position the left line to the right side of the dot */
+.line-with-dot::before {
+  right: 15px; /* Creates space between the dot and the left line */
+  background: linear-gradient(to left, #000000, rgba(165, 199, 254, 0.1));
+}
+
+/* Position the right line to the left side of the dot */
+.line-with-dot::after {
+  left: 15px; /* Creates space between the dot and the right line */
+  background: linear-gradient(to right, #000000, rgba(165, 199, 254, 0.1));
+}
+.line-with-dot{
+    right: 0px;
+    background: linear-gradient();
+}
+/* .card-para{
+    font-size: 12px;
+    font-weight: 400;
+    flex-wrap: wrap;
+    gap: 2px;
+} */
+.row{
+    justify-content: center;
+    gap: 15px;
+  
+
+}
+button{
+    border-radius: 5px;
+     border-color: rgb(6, 6, 255);
+   
+}
+ .About-button{
+    width: 50%;
+     color:rgb(111, 111, 228);
+      font-style:"Montenegrin Gothic One", serif;
+} 
+.Enter-button{
+    background-color: rgb(16, 16, 241);
+
+}
+.Enter-button:disabled{
+    cursor: not-allowed;
+    opacity: .9;
+}
+/* .row {
+  position: absolute;
+  top:50%;
+  left:50%;
+  margin-left: -65px;
+  margin-top: -20px;
+  width: 130px;
+  height: 40px;
+  text-align: center;
+} */
+button {
+       
+  outline:none;
+  height: 40px;
+  text-align: center;
+  width: 130px;
+  border-radius:40px;
+  background: #fff;
+  border: 2px solid rgb(0, 0, 0);
+  color:rgb(255, 255, 255);
+  letter-spacing:1px;
+  text-shadow:0;
+    font-family: "Bebas Neue", sans-serif;
+/* font-family: "Montenegrin Gothic One", serif; */
+    font-size:12px;
+    font-weight:bold;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  &:hover {
+    color:white;
+    background: rgb(0, 0, 0);
+  }
+  &:active {
+letter-spacing: 2px;
+    letter-spacing: 2px ;
+  }
+  &:after {
+    content:"";
+  }
+}
+.onclic {
+  width: 40px;
+  border-color:rgb(0, 0, 0);
+  border-width:3px;
+  font-size:0;
+  border-left-color:rgb(0, 0, 0);
+  animation: rotating 2s 0.25s linear infinite;
+
+  &:after {
+    content:"";
+  }
+  &:hover {
+    color:rgb(0, 0, 0);
+    background: rgb(0, 0, 0);
+  }
+}
+.validate {
+    font-family: "Montenegrin Gothic One", serif;
+  font-size:13px;
+  color: rgb(0, 0, 0);
+  background: rgb(0, 0, 0);
+  &:after{
+    font-family:'FontAwesome';
+    content:"\f00c";
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
+/* Cursor */
+.card-para{
+    font-family: "Montenegrin Gothic One", serif;
+    position: relative;
+    width: 24em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(0, 0, 0, 0.75);
+    font-size: 7px;
+    font-style:"Montenegrin Gothic One",system-ui ;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+/* Animation */
+.typewriter-animation {
+  animation: 
+    typewriter 5s steps(40) 2s 1 normal both, 
+    blinkingCursor 500ms steps(50) infinite normal;
+}
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes blinkingCursor{
+  from { border-right-color: rgba(0, 0, 0, 0.75); }
+  to { border-right-color: transparent; }
+}
+@font-face {
+  src: url("https://www.axis-praxis.org/fonts/webfonts/MetaVariableDemo-Set.woff2")
+    format("woff2");
+  font-family: "Meta";
+  font-style: normal;
+  font-weight: normal;
+}
+
+/* body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #8357eb;
+  width: 100vw;
+  height: 100vh;
+} */
+
+.form-heading {
+  transition: all 0.5s;
+  -webkit-text-stroke: 4px #000000;
+  font-variation-settings: "wght" 900, "ital" 1;
+  font-size: 2rem;
+  text-align: center;
+  color: transparent;
+  font-family: "Meta", sans-serif;
+  text-shadow: 10px 10px 0px #07bccc,
+    15px 15px 0px #4c0ef5,
+    20px 20px 0px #e9019a,
+    25px 25px 0px #8ac5ec,
+    45px 45px 10px #fcfcfc;
+  cursor: pointer;
+}
+
+.form-heading:hover {
+  font-variation-settings: "wght" 100, "ital" 0;
+  text-shadow: none;
+}
+.about-i{
+    border-radius:50px;
+}

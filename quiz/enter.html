@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMS – Student Management System</title>
+  <meta name="description" content="A modern Student Management System dashboard with real-time stats, attendance, grades, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-wrap">
+        <div class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">SMS</span>
+          <span class="logo-sub">Student Management System</span>
+        </div>
+      </div>
+      <button class="sidebar-close" id="sidebarClose">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <p class="nav-label">MAIN</p>
+      <a href="#" class="nav-item active" data-page="dashboard" onclick="switchPage('dashboard',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" data-page="students" onclick="switchPage('students',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        <span>Students</span>
+        <span class="nav-badge">1,248</span>
+      </a>
+      <a href="#" class="nav-item" data-page="attendance" onclick="switchPage('attendance',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        <span>Attendance</span>
+      </a>
+      <a href="#" class="nav-item" data-page="exams" onclick="switchPage('exams',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+        <span>Exams</span>
+      </a>
+      <a href="#" class="nav-item" data-page="grades" onclick="switchPage('grades',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+        <span>Grades</span>
+      </a>
+      <a href="#" class="nav-item" data-page="assignments" onclick="switchPage('assignments',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <span>Assignments</span>
+      </a>
+      <a href="#" class="nav-item" data-page="fees" onclick="switchPage('fees',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        <span>Fees</span>
+      </a>
+
+      <p class="nav-label" style="margin-top:20px">OTHERS</p>
+      <a href="#" class="nav-item" data-page="teachers" onclick="switchPage('teachers',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Teachers</span>
+        <span class="nav-badge">86</span>
+      </a>
+      <a href="#" class="nav-item" data-page="classes" onclick="switchPage('classes',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        <span>Classes</span>
+      </a>
+      <a href="#" class="nav-item" data-page="library" onclick="switchPage('library',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        <span>Library</span>
+      </a>
+      <a href="#" class="nav-item" data-page="events" onclick="switchPage('events',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Events</span>
+      </a>
+      <a href="#" class="nav-item" data-page="messages" onclick="switchPage('messages',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <span>Messages</span>
+        <span class="nav-badge new">3</span>
+      </a>
+      <a href="#" class="nav-item" data-page="reports" onclick="switchPage('reports',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span>Reports</span>
+      </a>
+      <a href="#" class="nav-item" data-page="settings" onclick="switchPage('settings',this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-user">
+      <div class="user-avatar">
+        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Admin&backgroundColor=b6e3f4" alt="Admin Avatar" />
+      </div>
+      <div class="user-info">
+        <span class="user-name">Admin</span>
+        <span class="user-role">Super Admin</span>
+      </div>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg>
+    </div>
+  </aside>
+
+  <!-- ========== MAIN ========== -->
+  <div class="main-wrapper">
+
+    <!-- TOP NAVBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger" onclick="toggleSidebar()">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="globalSearch" placeholder="Search anything..." />
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="topbar-btn notif-btn" id="notifBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+          <span class="badge-dot">2</span>
+        </button>
+        <div class="topbar-admin">
+          <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Admin&backgroundColor=b6e3f4" alt="Admin" />
+          <span>Admin</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========== PAGES ========== -->
+    <main class="content" id="mainContent">
+
+      <!-- DASHBOARD PAGE -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title animate-slide-in">Dashboard</h1>
+            <p class="page-sub animate-fade-in">Welcome back, Admin! Here's what's happening.</p>
+          </div>
+          <div class="date-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span id="currentDate">May 17, 2025</span>
+          </div>
+        </div>
+
+        <!-- STAT CARDS -->
+        <div class="stats-grid">
+          <div class="stat-card flip-card" style="--delay:0.05s">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="stat-icon" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <div class="stat-info">
+                  <p class="stat-label">Total Students</p>
+                  <h2 class="stat-value counter" data-target="1248">0</h2>
+                  <span class="stat-change up">↑ 12.5% vs last month</span>
+                </div>
+              </div>
+              <div class="flip-card-back" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">
+                <h3>Students</h3>
+                <p>Active: 1,198</p>
+                <p>New this month: +47</p>
+                <p>Dropouts: 3</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card flip-card" style="--delay:0.15s">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="stat-icon" style="background:linear-gradient(135deg,#10b981,#059669)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                </div>
+                <div class="stat-info">
+                  <p class="stat-label">Today's Attendance</p>
+                  <h2 class="stat-value counter" data-target="92" data-suffix="%">0%</h2>
+                  <span class="stat-change up">↑ 8.3% vs yesterday</span>
+                </div>
+              </div>
+              <div class="flip-card-back" style="background:linear-gradient(135deg,#10b981,#059669)">
+                <h3>Attendance</h3>
+                <p>Present: 1,148</p>
+                <p>Absent: 100</p>
+                <p>Late: 23</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card flip-card" style="--delay:0.25s">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="stat-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+                </div>
+                <div class="stat-info">
+                  <p class="stat-label">Total Teachers</p>
+                  <h2 class="stat-value counter" data-target="86">0</h2>
+                  <span class="stat-change up">↑ 5.2% vs last month</span>
+                </div>
+              </div>
+              <div class="flip-card-back" style="background:linear-gradient(135deg,#f59e0b,#d97706)">
+                <h3>Teachers</h3>
+                <p>Full-time: 70</p>
+                <p>Part-time: 16</p>
+                <p>Subjects: 24</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card flip-card" style="--delay:0.35s">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="stat-icon" style="background:linear-gradient(135deg,#ef4444,#dc2626)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                </div>
+                <div class="stat-info">
+                  <p class="stat-label">Pending Fees</p>
+                  <h2 class="stat-value counter" data-target="245000" data-prefix="₹" data-format="currency">₹0</h2>
+                  <span class="stat-change down">↓ 4.7% vs last month</span>
+                </div>
+              </div>
+              <div class="flip-card-back" style="background:linear-gradient(135deg,#ef4444,#dc2626)">
+                <h3>Pending Fees</h3>
+                <p>Due this month: ₹82K</p>
+                <p>Overdue: ₹1.63L</p>
+                <p>Collected: ₹4.2L</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHARTS + ACTIVITY ROW -->
+        <div class="two-col-grid">
+          <!-- Attendance Chart -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Attendance Overview</h3>
+              <div class="chip-group">
+                <button class="chip active" onclick="setChip(this)">This Week</button>
+                <button class="chip" onclick="setChip(this)">Month</button>
+                <button class="chip" onclick="setChip(this)">Year</button>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <div class="chart-y-labels">
+                <span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span>
+              </div>
+              <div class="chart-area">
+                <svg class="line-chart" viewBox="0 0 500 180" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.35"/>
+                      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path class="chart-area-fill" d="M0,36 C60,20 100,54 160,27 C220,0 260,54 320,36 C380,18 430,54 500,36 L500,180 L0,180 Z"/>
+                  <path class="chart-line" d="M0,36 C60,20 100,54 160,27 C220,0 260,54 320,36 C380,18 430,54 500,36"/>
+                  <circle class="chart-dot" cx="0" cy="36" r="5"/>
+                  <circle class="chart-dot" cx="83" cy="31" r="5"/>
+                  <circle class="chart-dot" cx="166" cy="27" r="5"/>
+                  <circle class="chart-dot active-dot" cx="249" cy="9" r="7"/>
+                  <circle class="chart-dot" cx="332" cy="36" r="5"/>
+                  <circle class="chart-dot" cx="415" cy="54" r="5"/>
+                  <circle class="chart-dot" cx="500" cy="36" r="5"/>
+                </svg>
+                <div class="chart-tooltip" style="left:43%;top:10%">
+                  <strong>Wed</strong>
+                  <span>Attendance: 95%</span>
+                </div>
+                <div class="chart-x-labels">
+                  <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Activities -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Recent Activities</h3>
+              <a href="#" class="view-all">View All</a>
+            </div>
+            <ul class="activity-list">
+              <li class="activity-item" style="--delay:0.1s">
+                <div class="activity-icon" style="background:#ede9fe">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <div class="activity-text">
+                  <p>New student <strong>John Doe</strong> admitted</p>
+                  <span>2 min ago</span>
+                </div>
+              </li>
+              <li class="activity-item" style="--delay:0.2s">
+                <div class="activity-icon" style="background:#d1fae5">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+                </div>
+                <div class="activity-text">
+                  <p>Maths exam scheduled for <strong>Class 10A</strong></p>
+                  <span>15 min ago</span>
+                </div>
+              </li>
+              <li class="activity-item" style="--delay:0.3s">
+                <div class="activity-icon" style="background:#fef3c7">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                </div>
+                <div class="activity-text">
+                  <p>Fees payment received from <strong>Ananya</strong></p>
+                  <span>1 hr ago</span>
+                </div>
+              </li>
+              <li class="activity-item" style="--delay:0.4s">
+                <div class="activity-icon" style="background:#fee2e2">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </div>
+                <div class="activity-text">
+                  <p>New assignment added in <strong>Physics</strong></p>
+                  <span>2 hr ago</span>
+                </div>
+              </li>
+              <li class="activity-item" style="--delay:0.5s">
+                <div class="activity-icon" style="background:#dbeafe">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                </div>
+                <div class="activity-text">
+                  <p>Library book issued to <strong>Rahul</strong></p>
+                  <span>3 hr ago</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CLASS OVERVIEW + EVENTS ROW -->
+        <div class="two-col-grid">
+          <!-- Class Overview -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Class Overview</h3>
+              <a href="#" class="view-all">View All</a>
+            </div>
+            <ul class="class-list">
+              <li class="class-item">
+                <div class="class-avatar" style="background:#ede9fe">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <div class="class-info">
+                  <p class="class-name">Class 10A</p>
+                  <p class="class-sub">Students: 42</p>
+                </div>
+                <div class="progress-wrap">
+                  <div class="progress-bar"><div class="progress-fill" style="width:92%;background:linear-gradient(90deg,#6366f1,#8b5cf6)" data-width="92%"></div></div>
+                  <span class="progress-label">92%</span>
+                </div>
+              </li>
+              <li class="class-item">
+                <div class="class-avatar" style="background:#d1fae5">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <div class="class-info">
+                  <p class="class-name">Class 10B</p>
+                  <p class="class-sub">Students: 40</p>
+                </div>
+                <div class="progress-wrap">
+                  <div class="progress-bar"><div class="progress-fill" style="width:88%;background:linear-gradient(90deg,#10b981,#059669)" data-width="88%"></div></div>
+                  <span class="progress-label">88%</span>
+                </div>
+              </li>
+              <li class="class-item">
+                <div class="class-avatar" style="background:#fef3c7">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <div class="class-info">
+                  <p class="class-name">Class 11A</p>
+                  <p class="class-sub">Students: 38</p>
+                </div>
+                <div class="progress-wrap">
+                  <div class="progress-bar"><div class="progress-fill" style="width:90%;background:linear-gradient(90deg,#f59e0b,#d97706)" data-width="90%"></div></div>
+                  <span class="progress-label">90%</span>
+                </div>
+              </li>
+              <li class="class-item">
+                <div class="class-avatar" style="background:#dbeafe">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <div class="class-info">
+                  <p class="class-name">Class 12A</p>
+                  <p class="class-sub">Students: 36</p>
+                </div>
+                <div class="progress-wrap">
+                  <div class="progress-bar"><div class="progress-fill" style="width:85%;background:linear-gradient(90deg,#3b82f6,#2563eb)" data-width="85%"></div></div>
+                  <span class="progress-label">85%</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Upcoming Events -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Upcoming Events</h3>
+              <a href="#" class="view-all">View All</a>
+            </div>
+            <ul class="event-list">
+              <li class="event-item" style="--delay:0.1s">
+                <div class="event-date">
+                  <span class="event-day">20</span>
+                  <span class="event-month">MAY</span>
+                </div>
+                <div class="event-details">
+                  <p class="event-title">Science Exhibition</p>
+                  <p class="event-time">08:00 AM – 04:00 PM</p>
+                </div>
+                <div class="event-dot" style="background:#6366f1"></div>
+              </li>
+              <li class="event-item" style="--delay:0.2s">
+                <div class="event-date">
+                  <span class="event-day">25</span>
+                  <span class="event-month">MAY</span>
+                </div>
+                <div class="event-details">
+                  <p class="event-title">Monthly Parent Meeting</p>
+                  <p class="event-time">10:00 AM – 12:00 PM</p>
+                </div>
+                <div class="event-dot" style="background:#10b981"></div>
+              </li>
+              <li class="event-item" style="--delay:0.3s">
+                <div class="event-date">
+                  <span class="event-day">30</span>
+                  <span class="event-month">MAY</span>
+                </div>
+                <div class="event-details">
+                  <p class="event-title">End of Term Exams</p>
+                  <p class="event-time">09:00 AM – 01:00 PM</p>
+                </div>
+                <div class="event-dot" style="background:#f59e0b"></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <footer class="page-footer">© 2025 Student Management System. All rights reserved.</footer>
+      </div>
+
+      <!-- STUDENTS PAGE -->
+      <div class="page" id="page-students">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title animate-slide-in">Students</h1>
+            <p class="page-sub animate-fade-in">Manage all student records and enrollment.</p>
+          </div>
+          <button class="btn-primary" onclick="openModal('addStudentModal')">+ Add Student</button>
+        </div>
+        <div class="card">
+          <div class="table-toolbar">
+            <div class="search-box sm">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              <input type="text" placeholder="Search students..." />
+            </div>
+            <div class="filter-group">
+              <select class="filter-select">
+                <option>All Classes</option>
+                <option>Class 10A</option>
+                <option>Class 10B</option>
+                <option>Class 11A</option>
+                <option>Class 12A</option>
+              </select>
+              <select class="filter-select">
+                <option>All Status</option>
+                <option>Active</option>
+                <option>Inactive</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th><input type="checkbox" /></th>
+                  <th>Student</th>
+                  <th>ID</th>
+                  <th>Class</th>
+                  <th>Attendance</th>
+                  <th>Fees</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-row">
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div class="table-user">
+                      <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=John&backgroundColor=b6e3f4" alt="John" />
+                      <div><p class="table-user-name">John Doe</p><p class="table-user-email">john@school.edu</p></div>
+                    </div>
+                  </td>
+                  <td class="td-mono">#STU001</td>
+                  <td><span class="chip-class">Class 10A</span></td>
+                  <td><div class="mini-bar"><div style="width:92%"></div></div><span>92%</span></td>
+                  <td><span class="status-badge paid">Paid</span></td>
+                  <td><span class="status-badge active">Active</span></td>
+                  <td>
+                    <div class="action-btns">
+                      <button class="action-btn edit" title="Edit">✏️</button>
+                      <button class="action-btn del" title="Delete">🗑️</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="table-row">
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div class="table-user">
+                      <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ananya&backgroundColor=ffd5dc" alt="Ananya" />
+                      <div><p class="table-user-name">Ananya Singh</p><p class="table-user-email">ananya@school.edu</p></div>
+                    </div>
+                  </td>
+                  <td class="td-mono">#STU002</td>
+                  <td><span class="chip-class">Class 10B</span></td>
+                  <td><div class="mini-bar"><div style="width:88%"></div></div><span>88%</span></td>
+                  <td><span class="status-badge pending">Pending</span></td>
+                  <td><span class="status-badge active">Active</span></td>
+                  <td>
+                    <div class="action-btns">
+                      <button class="action-btn edit">✏️</button>
+                      <button class="action-btn del">🗑️</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="table-row">
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div class="table-user">
+                      <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Rahul&backgroundColor=c0aede" alt="Rahul" />
+                      <div><p class="table-user-name">Rahul Verma</p><p class="table-user-email">rahul@school.edu</p></div>
+                    </div>
+                  </td>
+                  <td class="td-mono">#STU003</td>
+                  <td><span class="chip-class">Class 11A</span></td>
+                  <td><div class="mini-bar"><div style="width:95%"></div></div><span>95%</span></td>
+                  <td><span class="status-badge paid">Paid</span></td>
+                  <td><span class="status-badge active">Active</span></td>
+                  <td>
+                    <div class="action-btns">
+                      <button class="action-btn edit">✏️</button>
+                      <button class="action-btn del">🗑️</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="table-row">
+                  <td><input type="checkbox" /></td>
+                  <td>
+                    <div class="table-user">
+                      <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Priya&backgroundColor=d1d4f9" alt="Priya" />
+                      <div><p class="table-user-name">Priya Sharma</p><p class="table-user-email">priya@school.edu</p></div>
+                    </div>
+                  </td>
+                  <td class="td-mono">#STU004</td>
+                  <td><span class="chip-class">Class 12A</span></td>
+                  <td><div class="mini-bar"><div style="width:78%"></div></div><span>78%</span></td>
+                  <td><span class="status-badge overdue">Overdue</span></td>
+                  <td><span class="status-badge inactive">Inactive</span></td>
+                  <td>
+                    <div class="action-btns">
+                      <button class="action-btn edit">✏️</button>
+                      <button class="action-btn del">🗑️</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-footer">
+            <p>Showing 4 of 1,248 students</p>
+            <div class="pagination">
+              <button class="page-btn">‹</button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <button class="page-btn">›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATTENDANCE PAGE -->
+      <div class="page" id="page-attendance">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title animate-slide-in">Attendance</h1>
+            <p class="page-sub animate-fade-in">Track and manage student attendance records.</p>
+          </div>
+          <button class="btn-primary">Mark Attendance</button>
+        </div>
+        <div class="stats-grid" style="grid-template-columns:repeat(3,1fr)">
+          <div class="stat-card" style="--delay:0.05s">
+            <div class="stat-icon" style="background:linear-gradient(135deg,#10b981,#059669)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg>
+            </div>
+            <div class="stat-info">
+              <p class="stat-label">Present Today</p>
+              <h2 class="stat-value">1,148</h2>
+              <span class="stat-change up">↑ 92%</span>
+            </div>
+          </div>
+          <div class="stat-card" style="--delay:0.15s">
+            <div class="stat-icon" style="background:linear-gradient(135deg,#ef4444,#dc2626)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <div class="stat-info">
+              <p class="stat-label">Absent Today</p>
+              <h2 class="stat-value">100</h2>
+              <span class="stat-change down">↓ 8%</span>
+            </div>
+          </div>
+          <div class="stat-card" style="--delay:0.25s">
+            <div class="stat-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><circle cx="12" cy="16" r="1" fill="white"/></svg>
+            </div>
+            <div class="stat-info">
+              <p class="stat-label">Late Arrivals</p>
+              <h2 class="stat-value">23</h2>
+              <span class="stat-change" style="color:#f59e0b">~ 1.8%</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="card-title" style="margin-bottom:1rem">Today's Attendance</h3>
+          <div class="attendance-grid">
+            <div class="att-card present"><span class="att-name">John Doe</span><span class="att-status">Present</span></div>
+            <div class="att-card present"><span class="att-name">Ananya Singh</span><span class="att-status">Present</span></div>
+            <div class="att-card absent"><span class="att-name">Rahul Verma</span><span class="att-status">Absent</span></div>
+            <div class="att-card late"><span class="att-name">Priya Sharma</span><span class="att-status">Late</span></div>
+            <div class="att-card present"><span class="att-name">Arjun Patel</span><span class="att-status">Present</span></div>
+            <div class="att-card present"><span class="att-name">Sneha Rao</span><span class="att-status">Present</span></div>
+            <div class="att-card absent"><span class="att-name">Vikram Nair</span><span class="att-status">Absent</span></div>
+            <div class="att-card late"><span class="att-name">Kavya Iyer</span><span class="att-status">Late</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEES PAGE -->
+      <div class="page" id="page-fees">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title animate-slide-in">Fees Management</h1>
+            <p class="page-sub animate-fade-in">Track payments and pending dues.</p>
+          </div>
+          <button class="btn-primary">+ Add Payment</button>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card flip-card" style="--delay:0.05s">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="stat-icon" style="background:linear-gradient(135deg,#10b981,#059669)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                </div>
+                <div class="stat-info">
+                  <p class="stat-label">Total Collected</p>
+                  <h2 class="stat-value">₹4.2L</h2>
+                  <span class="stat-change up">↑ 14.2%</span>
+                </div>
+              </div>
+              <div class="flip-card-back" style="background:linear-gradient(135deg,#10b981,#059669)">
+                <h3>Collected Fees</h3>
+                <p>This Month: ₹82K</p>
+                <p>Last Month: ₹71K</p>
+                <p>Total: ₹4.2L</p>
+              </div>
+            </div>
+          </div>
+          <div class="stat-card flip-card" style="--delay:0.15s">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="stat-icon" style="background:linear-gradient(135deg,#ef4444,#dc2626)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                </div>
+                <div class="stat-info">
+                  <p class="stat-label">Pending Fees</p>
+                  <h2 class="stat-value">₹2.45L</h2>
+                  <span class="stat-change down">↓ 4.7%</span>
+                </div>
+              </div>
+              <div class="flip-card-back" style="background:linear-gradient(135deg,#ef4444,#dc2626)">
+                <h3>Pending Fees</h3>
+                <p>Due this month: ₹82K</p>
+                <p>Overdue: ₹1.63L</p>
+                <p>Students: 127</p>
+              </div>
+            </div>
+          </div>
+          <div class="stat-card flip-card" style="--delay:0.25s">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="stat-icon" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                </div>
+                <div class="stat-info">
+                  <p class="stat-label">Students Paid</p>
+                  <h2 class="stat-value">1,121</h2>
+                  <span class="stat-change up">↑ 89.8%</span>
+                </div>
+              </div>
+              <div class="flip-card-back" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">
+                <h3>Paid Students</h3>
+                <p>Fully paid: 1,121</p>
+                <p>Partial: 42</p>
+                <p>Unpaid: 85</p>
+              </div>
+            </div>
+          </div>
+          <div class="stat-card flip-card" style="--delay:0.35s">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="stat-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                </div>
+                <div class="stat-info">
+                  <p class="stat-label">This Month</p>
+                  <h2 class="stat-value">₹82K</h2>
+                  <span class="stat-change up">↑ 15.5%</span>
+                </div>
+              </div>
+              <div class="flip-card-back" style="background:linear-gradient(135deg,#f59e0b,#d97706)">
+                <h3>Monthly Fees</h3>
+                <p>Target: ₹1L</p>
+                <p>Achieved: 82%</p>
+                <p>Remaining: ₹18K</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAMS PAGE -->
+      <div class="page" id="page-exams">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title animate-slide-in">Exams</h1>
+            <p class="page-sub animate-fade-in">Manage exam schedules and results.</p>
+          </div>
+          <button class="btn-primary">+ Schedule Exam</button>
+        </div>
+        <div class="card">
+          <h3 class="card-title" style="margin-bottom:1.2rem">Upcoming Exams</h3>
+          <div class="exam-grid">
+            <div class="exam-card" style="--delay:0.1s;border-left:4px solid #6366f1">
+              <div class="exam-header"><span class="exam-subject">Mathematics</span><span class="exam-class">Class 10A</span></div>
+              <p class="exam-date">📅 May 30, 2025</p>
+              <p class="exam-time">⏰ 09:00 AM – 12:00 PM</p>
+              <div class="exam-footer">
+                <span class="exam-status upcoming">Upcoming</span>
+                <span class="exam-students">42 Students</span>
+              </div>
+            </div>
+            <div class="exam-card" style="--delay:0.2s;border-left:4px solid #10b981">
+              <div class="exam-header"><span class="exam-subject">Science</span><span class="exam-class">Class 11A</span></div>
+              <p class="exam-date">📅 June 2, 2025</p>
+              <p class="exam-time">⏰ 10:00 AM – 01:00 PM</p>
+              <div class="exam-footer">
+                <span class="exam-status upcoming">Upcoming</span>
+                <span class="exam-students">38 Students</span>
+              </div>
+            </div>
+            <div class="exam-card" style="--delay:0.3s;border-left:4px solid #f59e0b">
+              <div class="exam-header"><span class="exam-subject">English</span><span class="exam-class">Class 12A</span></div>
+              <p class="exam-date">📅 June 5, 2025</p>
+              <p class="exam-time">⏰ 09:00 AM – 11:00 AM</p>
+              <div class="exam-footer">
+                <span class="exam-status upcoming">Upcoming</span>
+                <span class="exam-students">36 Students</span>
+              </div>
+            </div>
+            <div class="exam-card" style="--delay:0.4s;border-left:4px solid #ef4444">
+              <div class="exam-header"><span class="exam-subject">History</span><span class="exam-class">Class 10B</span></div>
+              <p class="exam-date">📅 May 22, 2025</p>
+              <p class="exam-time">⏰ 02:00 PM – 04:00 PM</p>
+              <div class="exam-footer">
+                <span class="exam-status completed">Completed</span>
+                <span class="exam-students">40 Students</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRADES PAGE -->
+      <div class="page" id="page-grades">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title animate-slide-in">Grades</h1>
+            <p class="page-sub animate-fade-in">View and manage student academic performance.</p>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="card-title" style="margin-bottom:1.2rem">Grade Distribution</h3>
+          <div class="grade-bars">
+            <div class="grade-row"><span class="grade-label">A+</span><div class="grade-bar-wrap"><div class="grade-bar-fill" style="width:35%;background:#10b981" data-width="35%"></div></div><span class="grade-pct">35%</span></div>
+            <div class="grade-row"><span class="grade-label">A</span><div class="grade-bar-wrap"><div class="grade-bar-fill" style="width:28%;background:#6366f1" data-width="28%"></div></div><span class="grade-pct">28%</span></div>
+            <div class="grade-row"><span class="grade-label">B+</span><div class="grade-bar-wrap"><div class="grade-bar-fill" style="width:20%;background:#f59e0b" data-width="20%"></div></div><span class="grade-pct">20%</span></div>
+            <div class="grade-row"><span class="grade-label">B</span><div class="grade-bar-wrap"><div class="grade-bar-fill" style="width:12%;background:#3b82f6" data-width="12%"></div></div><span class="grade-pct">12%</span></div>
+            <div class="grade-row"><span class="grade-label">C</span><div class="grade-bar-wrap"><div class="grade-bar-fill" style="width:5%;background:#ef4444" data-width="5%"></div></div><span class="grade-pct">5%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MESSAGES PAGE -->
+      <div class="page" id="page-messages">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title animate-slide-in">Messages</h1>
+            <p class="page-sub animate-fade-in">Internal communication center.</p>
+          </div>
+          <button class="btn-primary">+ New Message</button>
+        </div>
+        <div class="messages-layout">
+          <div class="msg-list card">
+            <div class="msg-search">
+              <div class="search-box sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <input type="text" placeholder="Search messages..." />
+              </div>
+            </div>
+            <div class="msg-item active">
+              <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Teacher1&backgroundColor=c0aede" alt="" />
+              <div class="msg-item-info">
+                <div class="msg-name-row"><span>Mrs. Sharma</span><span class="msg-time">2m</span></div>
+                <p class="msg-preview">Regarding the exam schedule...</p>
+              </div>
+              <span class="msg-unread">2</span>
+            </div>
+            <div class="msg-item">
+              <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Parent1&backgroundColor=b6e3f4" alt="" />
+              <div class="msg-item-info">
+                <div class="msg-name-row"><span>Mr. Patel (Parent)</span><span class="msg-time">1h</span></div>
+                <p class="msg-preview">Can we schedule a meeting?</p>
+              </div>
+            </div>
+            <div class="msg-item">
+              <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Student5&backgroundColor=ffd5dc" alt="" />
+              <div class="msg-item-info">
+                <div class="msg-name-row"><span>Ananya Singh</span><span class="msg-time">3h</span></div>
+                <p class="msg-preview">I need help with assignment...</p>
+              </div>
+              <span class="msg-unread">1</span>
+            </div>
+          </div>
+          <div class="msg-chat card">
+            <div class="chat-header">
+              <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Teacher1&backgroundColor=c0aede" alt="" />
+              <div><p class="chat-name">Mrs. Sharma</p><p class="chat-status">Online</p></div>
+            </div>
+            <div class="chat-body">
+              <div class="chat-msg received">
+                <p>Hello Admin, I wanted to discuss the exam schedule for next week.</p>
+                <span>10:32 AM</span>
+              </div>
+              <div class="chat-msg sent">
+                <p>Sure, what changes would you like to propose?</p>
+                <span>10:35 AM</span>
+              </div>
+              <div class="chat-msg received">
+                <p>Can we move the Maths exam to June 2nd? Some students have a conflict.</p>
+                <span>10:37 AM</span>
+              </div>
+            </div>
+            <div class="chat-input">
+              <input type="text" placeholder="Type a message..." id="chatInput" />
+              <button class="send-btn" onclick="sendMessage()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GENERIC PAGE TEMPLATE (for remaining pages) -->
+      <div class="page" id="page-assignments">
+        <div class="page-header"><div><h1 class="page-title animate-slide-in">Assignments</h1><p class="page-sub">Manage homework and class assignments.</p></div><button class="btn-primary">+ New Assignment</button></div>
+        <div class="card"><div class="coming-soon"><div class="cs-icon">📚</div><h3>Assignments Module</h3><p>Assignment management with submission tracking coming soon!</p></div></div>
+      </div>
+      <div class="page" id="page-teachers">
+        <div class="page-header"><div><h1 class="page-title animate-slide-in">Teachers</h1><p class="page-sub">Manage teacher profiles and assignments.</p></div><button class="btn-primary">+ Add Teacher</button></div>
+        <div class="card"><div class="coming-soon"><div class="cs-icon">👩‍🏫</div><h3>Teachers Module</h3><p>Teacher management and schedule coming soon!</p></div></div>
+      </div>
+      <div class="page" id="page-classes">
+        <div class="page-header"><div><h1 class="page-title animate-slide-in">Classes</h1><p class="page-sub">Manage class sections and subjects.</p></div><button class="btn-primary">+ New Class</button></div>
+        <div class="card"><div class="coming-soon"><div class="cs-icon">🏫</div><h3>Classes Module</h3><p>Class management with timetable coming soon!</p></div></div>
+      </div>
+      <div class="page" id="page-library">
+        <div class="page-header"><div><h1 class="page-title animate-slide-in">Library</h1><p class="page-sub">Manage books and issue records.</p></div><button class="btn-primary">+ Add Book</button></div>
+        <div class="card"><div class="coming-soon"><div class="cs-icon">📖</div><h3>Library Module</h3><p>Library management system coming soon!</p></div></div>
+      </div>
+      <div class="page" id="page-events">
+        <div class="page-header"><div><h1 class="page-title animate-slide-in">Events</h1><p class="page-sub">School events and calendar.</p></div><button class="btn-primary">+ New Event</button></div>
+        <div class="card"><div class="coming-soon"><div class="cs-icon">📅</div><h3>Events Calendar</h3><p>Events and calendar management coming soon!</p></div></div>
+      </div>
+      <div class="page" id="page-reports">
+        <div class="page-header"><div><h1 class="page-title animate-slide-in">Reports</h1><p class="page-sub">Analytics and report generation.</p></div><button class="btn-primary">Generate Report</button></div>
+        <div class="card"><div class="coming-soon"><div class="cs-icon">📊</div><h3>Reports Module</h3><p>Advanced analytics and report export coming soon!</p></div></div>
+      </div>
+      <div class="page" id="page-settings">
+        <div class="page-header"><div><h1 class="page-title animate-slide-in">Settings</h1><p class="page-sub">Configure your SMS platform.</p></div></div>
+        <div class="card"><div class="coming-soon"><div class="cs-icon">⚙️</div><h3>Settings</h3><p>Platform configuration and preferences coming soon!</p></div></div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <!-- ADD STUDENT MODAL -->
+  <div class="modal-backdrop" id="addStudentModal" onclick="closeModalOutside(event,'addStudentModal')">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Add New Student</h3>
+        <button onclick="closeModal('addStudentModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="John" /></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Doe" /></div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="john@school.edu" /></div>
+          <div class="form-group"><label>Phone</label><input type="tel" placeholder="+91 98765 43210" /></div>
+          <div class="form-group"><label>Class</label><select><option>Class 10A</option><option>Class 10B</option><option>Class 11A</option><option>Class 12A</option></select></div>
+          <div class="form-group"><label>Roll Number</label><input type="text" placeholder="42" /></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-outline" onclick="closeModal('addStudentModal')">Cancel</button>
+        <button class="btn-primary">Add Student</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
