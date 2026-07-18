@@ -6,7 +6,7 @@ window.addEventListener("click",function(e){
     if (!dropdown.contains(e.target)){
         document.getElementById("dropdownmenu").classList.remove("show");
     }
-});
+});//guest page code
 let start=document.getElementById("button");
 start.addEventListener("click",function(){
 
@@ -24,7 +24,7 @@ start.addEventListener("click",function(){
     window.addEventListener("pageshow",function(){
         button.innerHTML="ENTER SYSTEM ➡️ ";
         button.disabled=false;
-    })
+    }) //guest page code
 });
 let buttonAbout=document.getElementById("buttonAbout");
 buttonAbout.addEventListener("click",function(){
@@ -37,11 +37,24 @@ buttonAbout.addEventListener("click",function(){
    setTimeout(function(){
   clearInterval(animation);
   window.location.href="about.html"
-   },2000);
+   },2000); //guest page code
    
 
 });
+
 window.addEventListener("pageshow",function(){
     buttonAbout.innerHTML="ℹ️ABOUT SYSTEM";
     buttonAbout.disabled=false;
    });
+   let params =new URLSearchParams(window.location.search);
+   let type =params.get("type");
+   console.log(type);
+   
+   
+   let logintitle=document.getElementById("logintitle");
+   console.log(logintitle);
+   if(type=="leader"){
+    logintitle.textContent="Leader Login";
+   }else{
+    logintitle.textContent="Student Login";
+   }

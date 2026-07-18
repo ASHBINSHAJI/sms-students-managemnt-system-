@@ -1,0 +1,176 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+body {
+    min-height: 100vh;
+overflow-x: hidden;
+overflow-y: hidden;
+    background:
+        radial-gradient(circle at top right,
+            rgba(59,130,246,.08) 0,
+            rgba(59,130,246,.08) 120px,
+            transparent 121px),
+
+        radial-gradient(circle at bottom left,
+            rgba(59,130,246,.08) 0,
+            rgba(59,130,246,.08) 120px,
+            transparent 121px),
+
+        #f8fbff;
+          background: linear-gradient(-45deg,white,rgb(136, 136, 224),cyan);
+          background-size: 400% 400%;
+          animation: gradientShift 15s ease infinite;
+    background-repeat: no-repeat;
+}
+@keyframes gradientShift{
+    0%{
+     background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
+
+.container{  
+      display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+.nav{
+    position: relative;
+    z-index: 1000;
+     height: 55px;
+    padding: 0 20px;
+    box-shadow: none;
+    background: rgb(45, 143, 230);
+    border-radius: 50px;
+    
+    margin: 20px auto 0;
+    width: 90%;
+   
+    box-sizing: border-box;
+}
+.logo-row{
+    display:flex;
+    align-items:center;
+    justify-content: left;
+    gap :15px;
+}
+.logo-row i{
+    margin-bottom: 16px;
+    font-size:22px;
+    margin-top: 20px;
+}
+.students-heading-stud{
+    margin-top: 18px;
+    font-weight: 500;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.dropbtn{
+    
+ display: flex;
+ align-items: center;
+ gap: 3px;
+ border-color: #2b253d;
+ background: transparent;
+ color: #ffffff;
+ font-size: 22px;
+ font-weight: 500;
+ padding: 10px 14px; 
+ margin-left: 3vh;
+ border-radius: 8px;
+ cursor: pointer;
+ transition: background 0.2s ease;
+}
+.dropbtn:hover{
+    background: rgba(255, 255, 255, 0.1);
+    border-color: black;
+    transform: translate(-1px);
+}
+.dropbtn:active{
+    transform: translateY(0px) scale(0.97);
+    background: rgba(255, 255, 255, 0.25);
+}
+.dropbtn:focus-visible{
+    outline: 1px solid #ffffff;
+    outline-offset: 2px;
+}
+.user-icon{
+display: flex;
+align-items: center;
+font-size: 16px;
+}
+.arrow-down{
+    font-size: 1fr;
+    margin-left: 2px;
+}
+.dropdown{
+    position: relative;
+}
+
+.dropdown-menu{
+    position: absolute;
+     /* top: 100%;  */
+    right: 0;
+    font-size: 10px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 2px rgba(0, 0, 0, 0.15);
+    min-width: 130px;
+ margin: 8px 29px;
+    flex-direction: column;
+    gap: 2px;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.25s ease;
+} 
+.dropdown-menu.show{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.dropdown-menu a:hover{
+background: #f0f4ff;
+}
+  .dropdown-menu a{
+    display: block;
+    padding: 6px 10px;
+   text-decoration: none;
+   color: black; 
+
+} 
+.card{
+    justify-content: center;
+    align-items: center;
+    margin-left: 200px;
+    margin-right: 100px;
+} 
+.container-fluid{
+    color: #002fb1;
+    background-color: #003feb;
+    justify-content: center;
+    align-items: center;
+}
+.apolgie{
+ font-size: 25px;
+}
+.dropbtn-student{
+    background-color: #002fb1;
+    size: 15px;
+    border-radius: 10px;
+    color: #f0f4ff;
+    border: none;
+}
+

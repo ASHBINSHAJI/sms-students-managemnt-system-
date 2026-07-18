@@ -35,14 +35,14 @@
 <h1 class="students-heading-stud"> Students Management System (SMS)</h1>
 </div>
 <div class="dropdown-student">
-    <button class="dropbtn-student" onclick="toggleDropdown()">
+    <button class="dropbtn-student" id="Loginbtn" onclick="toggleDropdown()">
 <span class="user-icon"><i class="bi bi-person-fill"></i></span> &nbsp;Student
 <!-- <span class="arrow-down">↘️</span> -->
     </button>
 
      <div class="dropdown-menu" id="dropdownmenu">  
         <a href="index.html">GuestID</a>
-        <a href="student.html" id="leader">LeaderID</a>
+       <a href="student.html?type=leader" id="learnbtn">LeaderID</a> 
         <a href="Develop.html">DeveloperID</a>
         <a href="setting.html">Setting</a>
     </div>
@@ -59,12 +59,12 @@
         <div class="card p-4 mx-3">
             <i class="bi bi-person-square  icon-stud"></i>
 
-            <h1 class="matrix-text">student Login</h1>
+            <h1 class="matrix-text " id="logintitle">student Login</h1>
             <p class="para-stud typewriter-animation">Login To Access Your account</p>
             <form action="">
                 <div class="input-group">
                     <div class="row  row-form">
-                    <label for="student-id" >Student ID:</label>
+                    <label for="student-id" id="idlabel" >Student ID:</label>
                     <input type="text" id="student-id-form" placeholder="Enter your Student ID" class="id-form">
                     <label for="password" class="pass-lab">Password:</label>
                     <input type="text" id="password" placeholder="Enter your Password" class="pass-form">
@@ -97,6 +97,6 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script>
-        <script src="index.js"></script>
+        <script src="student.js"></script>
     </body>
 </html>

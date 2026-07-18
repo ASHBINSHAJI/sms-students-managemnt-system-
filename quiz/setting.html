@@ -13,23 +13,45 @@
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" href="develop.css">
     </head>
 
     <body>
-        <header>
-            <!-- place navbar here -->
-        </header>
-        <main>
-            <h1>Testt hello</h1>
-        </main>
-        <footer>
-            <!-- place footer here -->
-        </footer>
-        <!-- Bootstrap JavaScript Bundle (includes Popper) -->
+     <nav>
+    <body class="body">
+         <div class="row"> 
+            <nav class=" nav">
+    <div class="container">
+        <div class="logo-row">
+ <i class="bi bi-backpack4-fill"></i>
+<h2 class="students-heading-stud"> Students Management System (SMS)</h2>
+</div>
+<div class="dropdown-student">
+    <button class="dropbtn-student" id="Loginbtn" onclick="toggleDropdown()">
+<span class="user-icon"><i class="bi bi-person-fill"></i></span> &nbsp;Student
+<!-- <span class="arrow-down">↘️</span> -->
+    </button>
+
+     <div class="dropdown-menu" id="dropdownmenu">  
+        <a href="index.html">GuestID</a>
+       <a href="student.html?type=leader" id="learnbtn">LeaderID</a> 
+        <a href="student.html">StudentID</a>
+        <a href="setting.html">Setting</a>
+    </div>
+    </div>
+</div>
+</div>
+    </nav>
+     <div class="container-fluis vh-100 d-flex justify-content-center align-items-center col-10 ml-4px">
+        <div class="card p-4 mx-3">
+    
+        <h1 class="apolgie"  data-text="Spotlight">sorry its under maintance its will open soon  </h1>
+        </div>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"
         ></script>
+        <script src="develop.js"></script>
     </body>
 </html>
